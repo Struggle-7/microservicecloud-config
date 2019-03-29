@@ -2,15 +2,12 @@ spring:
     profiles: 
         active:
            - dev
+           
+           
 ---
 server:
   port: 8001
 
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml
-  type-aliases-package: cn.XXX.entity
-  mapper-locations:
-  - classpath:mybatis/mapper/**/*.xml
 spring:
   profiles: dev
   application:
@@ -26,22 +23,31 @@ spring:
       initial-size: 5    #初始化连接数
       max-total: 10      #最大连接数
       max-wait-millis: 200  #等待连接最长的超时时间
+      
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: cn.wxj.springcloud.entitis
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
 eureka:
-  client:
+  client:   #客户端注册进eureka服务列表
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/
   instance:
-    instance-id: dept8001
+    instance-id: dept8001.com
     prefer-ip-address: true
+    
+info:
+    app.name: wxj-microservicecloud-springcloudconfig01
+    company.name: www.wxj.com
+    build.artifactId: $project.artifactId$
+    build.version: $project.version$
+    
+    
 ---
 server:
   port: 8001
 
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml
-  type-aliases-package: cn.XXX.entity
-  mapper-locations:
-  - classpath:mybatis/mapper/**/*.xml
 spring:
   profiles: test
   application:
@@ -57,10 +63,23 @@ spring:
       initial-size: 5    #初始化连接数
       max-total: 10      #最大连接数
       max-wait-millis: 200  #等待连接最长的超时时间
+  
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: cn.wxj.springcloud.entitis
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+
 eureka:
-  client:
+  client:       #客户端注册进eureka服务列表
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/
   instance:
-    instance-id: dept8001
+    instance-id: dept8001.com
     prefer-ip-address: true
+    
+info:
+    app.name: wxj-microservicecloud-springcloudconfig01
+    company.name: www.wxj.com
+    build.artifactId: $project.artifactId$
+    build.version: $project.version$
